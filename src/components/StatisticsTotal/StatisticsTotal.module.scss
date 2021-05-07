@@ -1,0 +1,19 @@
+.item {
+  &:not(:last-child) {
+    margin-bottom: 5px;
+  }
+}
+
+.value {
+  font-weight: 500;
+
+  &--high {
+    @extend .value;
+    color: forestgreen;
+  }
+
+  &--low {
+    @extend .value;
+    color: tomato;
+  }
+}
