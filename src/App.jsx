@@ -2,7 +2,7 @@ import Section from './components/Section';
 import FeedbackOptions from './components/FeedbackOptions';
 import Statistics from './components/Statistics';
 
-const App = () => {
+export default function App() {
   return (
     <>
       <Section title="Please leave feedback">
@@ -13,5 +13,4 @@ const App = () => {
       </Section>
     </>
   );
-};
-export default App;
+}
