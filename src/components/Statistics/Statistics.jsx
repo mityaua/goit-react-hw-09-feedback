@@ -1,11 +1,19 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
+import feedbackSelectors from '../../redux/feedback/feedback-selectors';
+
 import StatisticsTotal from '../StatisticsTotal';
-import Notification from '../Notification';
 
 import styles from './Statistics.module.scss';
 
 // Компонент списка отзывов
-const Statistics = ({ feedback, total, percent }) => {
+export default function Statistics() {
+  const good = useSelector(feedbackSelectors.getGood);
+  const neutral = useSelector(feedbackSelectors.getNeutral);
+  const bad = useSelector(feedbackSelectors.getBad);
+  const total = useSelector(feedbackSelectors.getTotalFeedback);
+  const percent = useSelector(feedbackSelectors.getPositivePercent);
+
   return (
     <>
       {total ? (
@@ -13,36 +21,30 @@ const Statistics = ({ feedback, total, percent }) => {
           <ul className={styles.list}>
             <li className={styles.item}>
               <p>
-                Good: <span className={styles.value}>{feedback.good}</span>
+                Good: <span className={styles.value}>{good}</span>
               </p>
             </li>
             <li className={styles.item}>
               <p>
-                Neutral:{' '}
-                <span className={styles.value}>{feedback.neutral}</span>
+                Neutral: <span className={styles.value}>{neutral}</span>
               </p>
             </li>
             <li className={styles.item}>
               <p>
-                Bad: <span className={styles.value}>{feedback.bad}</span>
+                Bad: <span className={styles.value}>{bad}</span>
               </p>
             </li>
           </ul>
           <StatisticsTotal total={total} percent={percent} />
         </>
       ) : (
-        <Notification message={'No feedback given'} />
+        <p>
+          No feedback given{' '}
+          <span role="img" aria-label="nothing face">
+            🤷‍♂️
+          </span>
+        </p>
       )}
     </>
   );
-};
-
-Statistics.propTypes = {
-  feedback: PropTypes.shape({
-    good: PropTypes.number.isRequired,
-    neutral: PropTypes.number.isRequired,
-    bad: PropTypes.number.isRequired,
-  }),
-};
-
-export default Statistics;
+}

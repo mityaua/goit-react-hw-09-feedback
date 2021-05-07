@@ -1,1 +1,1 @@
-export { default } from './Statistics.container';
+export { default } from './Statistics';

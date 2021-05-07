@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'; // Импорт функции создания редюсера
-import {onLeaveFeedback} from './feedback-actions'; // Импорт названия экшена
+import { onLeaveFeedback } from './feedback-actions'; // Импорт названия экшена
 
-// Изначальный стейт обьекта федбеков
+// Cтейт обьекта федбеков
 const feedbackInitialState = {
   good: 0,
   neutral: 0,

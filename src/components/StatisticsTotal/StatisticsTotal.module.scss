@@ -1,19 +1,21 @@
-.item {
-  &:not(:last-child) {
-    margin-bottom: 5px;
+.total {
+  margin-bottom: 5px;
+
+  font-weight: 700;
+
+  &__value {
+    color: cornflowerblue;
   }
 }
 
-.value {
-  font-weight: 500;
+.positive {
+  font-weight: 700;
 
   &--high {
-    @extend .value;
     color: forestgreen;
   }
 
   &--low {
-    @extend .value;
     color: tomato;
   }
 }

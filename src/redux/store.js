@@ -14,18 +14,23 @@ import {
   REGISTER,
 } from 'redux-persist'; // Функциии для работы с локальными и сессиями + игнор ворнинга в консоли
 import sessionStorage from 'redux-persist/lib/storage/session'; // Импорт сессионного хранилища
+import logger from 'redux-logger'; // Импорт логгера
 
 // Редюсер по фидбекам
 import feedbackReducer from './feedback/feedback-reducer';
 
 // Прослойки
-const middleware = {
+const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-};
+];
+
+if (process.env.NODE_ENV === `development`) {
+  middleware.push(logger);
+}
 
 // Корневой редюсер
 const rootReducer = combineReducers({
